@@ -6,15 +6,16 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
 
-open class MainApplication: Application(){
+open class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        startKoin{
+        startKoin {
             androidLogger()
             androidContext(this@MainApplication)
             modules(
-                KoinModules.network
+                KoinModules.network,
+                KoinModules.product,
             )
         }
     }

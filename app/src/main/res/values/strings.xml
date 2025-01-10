@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Meli Test</string>
+    <string name="search_screen_image_cd">Mercado Libre Logo</string>
+    <string name="search_screen_search_label">Buscar en Mercado Libre</string>
+    <string name="search_screen_search_cd">Buscar Icon</string>
+    <string name="search_screen_search_button">Buscar</string>
 </resources>

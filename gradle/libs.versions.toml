@@ -10,6 +10,8 @@ lifecycleRuntimeKtx = "2.8.7"
 ## Compose
 activityCompose = "1.9.3"
 composeBom = "2024.04.01"
+    ## Navigation Compose
+    navigationCompose = "2.8.5"
 
 ## koin
 koin = "4.0.1"
@@ -43,6 +45,8 @@ androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+### Navigation
+compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 
 ### Koin
 koin = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }

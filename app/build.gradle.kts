@@ -52,6 +52,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    /*** Compose Navigation ***/
+    implementation(libs.compose.navigation)
 
     /*** lifecycle ***/
     implementation(libs.androidx.lifecycle.runtime.ktx)
