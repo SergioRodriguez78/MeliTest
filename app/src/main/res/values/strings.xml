@@ -1,7 +1,17 @@
 <resources>
+    <!-- General -->
     <string name="app_name">Meli Test</string>
+
+    <!-- Search -->
     <string name="search_screen_image_cd">Mercado Libre Logo</string>
     <string name="search_screen_search_label">Buscar en Mercado Libre</string>
     <string name="search_screen_search_cd">Buscar Icon</string>
     <string name="search_screen_search_button">Buscar</string>
+
+    <!-- Product List -->
+    <string name="product_list_screen_title">Estas buscando %1$s</string>
+    <string name="product_list_screen_loading_text">Cargando productos…</string>
+    <string name="product_list_screen_error_text">No se encontraron productos para esta búsqueda :(</string>
+    <string name="product_list_screen_seller_name">Por %1$s</string>
+
 </resources>

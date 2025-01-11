@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.mercadolibre.melitest.navigation.routes.product.ProductRoutes
+import com.mercadolibre.melitest.product.list.ui.screen.ProductListScreen
 import com.mercadolibre.melitest.product.search.ui.screen.SearchScreen
 
 @Composable
@@ -30,7 +31,15 @@ fun NavigationController(navController: NavHostController, paddingValues: Paddin
 
         composable<ProductRoutes.ProductList> { backStackEntry ->
             val query = backStackEntry.toRoute<ProductRoutes.ProductList>()
-            Text(text = "Product List: $query")
+            ProductListScreen(
+                query = query,
+                navigator = navController
+            )
+        }
+
+        composable<ProductRoutes.ProductDetail> { backStackEntry ->
+            val product = backStackEntry.toRoute<ProductRoutes.ProductDetail>().productId
+            Text(text = "Product Detail: $product")
         }
     }
 }
