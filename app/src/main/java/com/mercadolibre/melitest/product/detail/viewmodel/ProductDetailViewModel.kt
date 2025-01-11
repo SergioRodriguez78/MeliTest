@@ -1,6 +1,5 @@
 package com.mercadolibre.melitest.product.detail.viewmodel
 
-import android.util.Log
 import com.mercadolibre.melitest.core.BaseViewModel
 import com.mercadolibre.melitest.core.ScreenState
 import com.mercadolibre.melitest.notification.NotificationManager
@@ -31,7 +30,6 @@ class ProductDetailViewModel(
             val product = productRepository.getProductDetail(productId)
             product
                 .onSuccess { productDetail ->
-                    Log.i("ProductDetailViewModel", "Product: $productDetail")
                     _selectedProduct.update { productDetail }
                     _screenState.update { ScreenState.Success }
                 }.onFailure { error ->
