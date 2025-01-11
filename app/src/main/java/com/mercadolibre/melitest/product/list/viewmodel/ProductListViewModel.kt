@@ -24,7 +24,7 @@ class ProductListViewModel(
 
 
     fun findProducts(query: String) {
-        if(hasSearched) return
+        if (hasSearched) return
         executeSuspending(
             onError = {
                 _screenState.value = ScreenState.Error
@@ -32,14 +32,22 @@ class ProductListViewModel(
         ) {
             _screenState.value = ScreenState.Loading
 
-            val products = productRepository.getProducts(query)
+            val products =
+                productRepository.getProducts(query.split(QUERY_SEPARATOR).joinToString())
 
-            if (products.isSuccess) {
-                _productList.update { products.getOrNull() ?: emptyList() }
-                _screenState.value = ScreenState.Success
-            } else {
-                _screenState.value = ScreenState.Error
-            }
+            products
+                .onSuccess { list ->
+
+                    if (list.isEmpty()) {
+                        _screenState.value = ScreenState.Error
+                        return@onSuccess
+                    }
+
+                    _productList.update { list }
+                    _screenState.value = ScreenState.Success
+                }.onFailure {
+                    _screenState.value = ScreenState.Error
+                }
 
             hasSearched = true
         }
@@ -49,5 +57,9 @@ class ProductListViewModel(
         executeSuspending {
             sendEvent(GeneralEvent.Navigation(ProductRoutes.ProductDetail(product.id)))
         }
+    }
+
+    companion object {
+        const val QUERY_SEPARATOR = "%20"
     }
 }

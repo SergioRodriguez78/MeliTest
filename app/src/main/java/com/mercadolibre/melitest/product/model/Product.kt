@@ -10,14 +10,19 @@ data class Product(
     val image: String,
     val seller: String,
     val price: Double,
-    val place: String
+    val place: String,
+    val availableQuantity: Int,
+    val city: String
 ) {
     val formattedPrice: String
         get() {
             val symbols = DecimalFormatSymbols(Locale.getDefault()).apply {
                 groupingSeparator = '.'
+                decimalSeparator = ','
             }
-            val format = DecimalFormat("#,###,###,###", symbols)
+            val format = DecimalFormat("#,###,###,###.##", symbols).apply {
+                maximumFractionDigits = 2
+            }
             return "$ ${format.format(price)}"
         }
 }

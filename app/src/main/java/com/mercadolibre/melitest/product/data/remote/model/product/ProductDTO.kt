@@ -13,6 +13,6 @@ data class ProductDTO(
     val price: Double,
     @SerialName("available_quantity")
     val availableQuantity: Int?,
-    val seller: Seller?,
-    val address: Address?,
+    val seller: SellerDTO?,
+    val address: AddressDTO?,
 )

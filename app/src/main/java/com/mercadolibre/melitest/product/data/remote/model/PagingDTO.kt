@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Paging(
+data class PagingDTO(
     val total: Int,
     @SerialName("primary_results")
     val primaryResults: Int,

@@ -4,4 +4,5 @@ import com.mercadolibre.melitest.product.model.Product
 
 interface ProductRepository {
     suspend fun getProducts(query: String): Result<List<Product>>
+    suspend fun getProductDetail(productId: String): Result<Product>
 }

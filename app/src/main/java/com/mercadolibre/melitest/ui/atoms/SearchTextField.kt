@@ -18,7 +18,8 @@ fun SearchTextField(
     modifier: Modifier,
     query: String,
     onQueryChange: (String) -> Unit,
-    onSearch: () -> Unit
+    onSearch: () -> Unit,
+    enabledSearch: Boolean
 ) {
     TextField(
         modifier = modifier,
@@ -26,12 +27,14 @@ fun SearchTextField(
         onValueChange = onQueryChange,
         label = { Text(stringResource(R.string.search_screen_search_label)) },
         keyboardOptions = KeyboardOptions.Default.copy(
-            imeAction = ImeAction.Search
+            imeAction = if (enabledSearch) ImeAction.Search else ImeAction.None
         ),
         singleLine = true,
         keyboardActions = KeyboardActions(
             onSearch = {
-                onSearch()
+                if (enabledSearch) {
+                    onSearch()
+                }
             }
         ),
         leadingIcon = {
