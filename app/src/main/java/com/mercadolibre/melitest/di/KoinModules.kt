@@ -1,6 +1,8 @@
 package com.mercadolibre.melitest.di
 
 import com.mercadolibre.melitest.network.provider.ClientProvider
+import com.mercadolibre.melitest.notification.NotificationManager
+import com.mercadolibre.melitest.notification.NotificationManagerImpl
 import com.mercadolibre.melitest.product.data.ProductRepository
 import com.mercadolibre.melitest.product.data.ProductRepositoryImpl
 import com.mercadolibre.melitest.product.detail.viewmodel.ProductDetailViewModel
@@ -29,5 +31,10 @@ object KoinModules {
 
         // Detail
         viewModelOf(::ProductDetailViewModel)
+    }
+
+    val notification = module {
+        // Notification
+        singleOf(::NotificationManagerImpl) { bind<NotificationManager>() }
     }
 }
