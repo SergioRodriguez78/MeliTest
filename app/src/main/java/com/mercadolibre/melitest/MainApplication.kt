@@ -16,6 +16,7 @@ open class MainApplication : Application() {
             modules(
                 KoinModules.network,
                 KoinModules.product,
+                KoinModules.notification,
             )
         }
     }

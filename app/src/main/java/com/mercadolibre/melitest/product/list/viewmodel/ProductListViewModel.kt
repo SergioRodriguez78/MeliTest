@@ -4,6 +4,7 @@ import com.mercadolibre.melitest.core.BaseViewModel
 import com.mercadolibre.melitest.core.GeneralEvent
 import com.mercadolibre.melitest.core.ScreenState
 import com.mercadolibre.melitest.navigation.routes.product.ProductRoutes
+import com.mercadolibre.melitest.notification.NotificationManager
 import com.mercadolibre.melitest.product.data.ProductRepository
 import com.mercadolibre.melitest.product.model.Product
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,7 +12,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class ProductListViewModel(
-    private val productRepository: ProductRepository
+    private val productRepository: ProductRepository,
+    private val notificationManager: NotificationManager
 ) : BaseViewModel() {
 
     private var hasSearched = false
@@ -27,6 +29,7 @@ class ProductListViewModel(
         if (hasSearched) return
         executeSuspending(
             onError = {
+                notificationManager.showError("Error inesperado")
                 _screenState.value = ScreenState.Error
             }
         ) {
@@ -45,7 +48,8 @@ class ProductListViewModel(
 
                     _productList.update { list }
                     _screenState.value = ScreenState.Success
-                }.onFailure {
+                }.onFailure { error ->
+                    notificationManager.showError(error.message ?: "Error inesperado")
                     _screenState.value = ScreenState.Error
                 }
 
