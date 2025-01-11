@@ -67,6 +67,9 @@ dependencies {
     /*** Network ***/
     implementation(libs.bundles.network)
 
+    /*** Image ***/
+    implementation(libs.bundles.image)
+
     /*** Testing ***/
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

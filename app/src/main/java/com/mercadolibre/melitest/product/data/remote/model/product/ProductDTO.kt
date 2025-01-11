@@ -12,7 +12,7 @@ data class ProductDTO(
     val permalink: String,
     val price: Double,
     @SerialName("available_quantity")
-    val availableQuantity: Int,
-    val seller: Seller,
-    val address: Address,
+    val availableQuantity: Int?,
+    val seller: Seller?,
+    val address: Address?,
 )

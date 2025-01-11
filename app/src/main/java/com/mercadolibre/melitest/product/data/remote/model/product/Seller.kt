@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Seller(
-    val id: Int,
+    val id: Long,
     @SerialName("nickname")
     val name: String,
 )
