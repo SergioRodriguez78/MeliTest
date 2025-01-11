@@ -1,5 +1,6 @@
 package com.mercadolibre.melitest.product.data
 
+import com.mercadolibre.melitest.core.ResultMELI
 import com.mercadolibre.melitest.product.data.remote.ProductService
 import com.mercadolibre.melitest.product.model.Product
 import com.mercadolibre.melitest.product.model.toProductList
@@ -12,7 +13,7 @@ class ProductRepositoryImpl(
 
     private var productList = emptyList<Product>()
 
-    override suspend fun getProducts(query: String): Result<List<Product>> =
+    override suspend fun getProducts(query: String): ResultMELI<List<Product>> =
         withContext(Dispatchers.IO) {
 
             val response = service.searchProducts(query = query)
@@ -26,22 +27,22 @@ class ProductRepositoryImpl(
                     // Have an instance in cache of the current list of products
                     productList = products
 
-                    Result.success(products)
+                    ResultMELI.success(products)
 
                 } else {
-                    Result.failure(Exception("Response body is null"))
+                    ResultMELI.error(Exception("Response body is null"))
                 }
             } else {
-                Result.failure(Exception("Error: ${response.message()} (Code: ${response.code()})"))
+                ResultMELI.error(Exception("Error: ${response.message()} (Code: ${response.code()})"))
             }
         }
 
-    override suspend fun getProductDetail(productId: String): Result<Product> {
+    override suspend fun getProductDetail(productId: String): ResultMELI<Product> {
         val product = productList.find { it.id == productId }
         return if (product != null) {
-            Result.success(product)
+            ResultMELI.success(product)
         } else {
-            Result.failure(Exception("Product not found"))
+            ResultMELI.error(Exception("Product not found"))
         }
     }
 
