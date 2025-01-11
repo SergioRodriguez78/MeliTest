@@ -1,7 +1,11 @@
 package com.mercadolibre.melitest.di
 
 import com.mercadolibre.melitest.network.provider.ClientProvider
+import com.mercadolibre.melitest.product.data.ProductRepository
+import com.mercadolibre.melitest.product.data.ProductRepositoryImpl
 import com.mercadolibre.melitest.product.search.viewmodel.SearchScreenViewModel
+import org.koin.core.module.dsl.bind
+import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
@@ -11,6 +15,10 @@ object KoinModules {
     }
 
     val product = module {
+        // Data
+        single { ClientProvider().provideProductService(get()) }
+        singleOf(::ProductRepositoryImpl) { bind<ProductRepository>() }
+
         // Search
         viewModelOf(::SearchScreenViewModel)
     }
