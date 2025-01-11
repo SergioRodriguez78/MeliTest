@@ -10,6 +10,8 @@ class ProductRepositoryImpl(
     private val service: ProductService
 ) : ProductRepository {
 
+    private var productList = emptyList<Product>()
+
     override suspend fun getProducts(query: String): Result<List<Product>> =
         withContext(Dispatchers.IO) {
 
@@ -18,7 +20,14 @@ class ProductRepositoryImpl(
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
-                    Result.success(body.toProductList())
+
+                    val products = body.toProductList()
+
+                    // Have an instance in cache of the current list of products
+                    productList = products
+
+                    Result.success(products)
+
                 } else {
                     Result.failure(Exception("Response body is null"))
                 }
@@ -26,5 +35,14 @@ class ProductRepositoryImpl(
                 Result.failure(Exception("Error: ${response.message()} (Code: ${response.code()})"))
             }
         }
-}
 
+    override suspend fun getProductDetail(productId: String): Result<Product> {
+        val product = productList.find { it.id == productId }
+        return if (product != null) {
+            Result.success(product)
+        } else {
+            Result.failure(Exception("Product not found"))
+        }
+    }
+
+}

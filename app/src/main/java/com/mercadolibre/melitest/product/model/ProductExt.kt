@@ -10,7 +10,9 @@ fun SearchResponseDTO.toProductList(): List<Product> {
             image = dto.thumbnail,
             seller = dto.seller?.name.orEmpty(),
             price = dto.price,
-            place = dto.address?.stateName.orEmpty()
+            place = dto.address?.stateName.orEmpty(),
+            city = dto.address?.cityName.orEmpty(),
+            availableQuantity = dto.availableQuantity ?: 0
         )
     }
 }

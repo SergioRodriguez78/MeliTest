@@ -14,7 +14,7 @@ data class SearchResponseDTO(
 
     val query: String,
 
-    val paging: Paging,
+    val paging: PagingDTO,
 
     val results: List<ProductDTO>
 )

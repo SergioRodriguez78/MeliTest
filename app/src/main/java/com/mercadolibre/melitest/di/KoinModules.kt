@@ -3,6 +3,7 @@ package com.mercadolibre.melitest.di
 import com.mercadolibre.melitest.network.provider.ClientProvider
 import com.mercadolibre.melitest.product.data.ProductRepository
 import com.mercadolibre.melitest.product.data.ProductRepositoryImpl
+import com.mercadolibre.melitest.product.detail.viewmodel.ProductDetailViewModel
 import com.mercadolibre.melitest.product.list.viewmodel.ProductListViewModel
 import com.mercadolibre.melitest.product.search.viewmodel.SearchScreenViewModel
 import org.koin.core.module.dsl.bind
@@ -25,5 +26,8 @@ object KoinModules {
 
         // List
         viewModelOf(::ProductListViewModel)
+
+        // Detail
+        viewModelOf(::ProductDetailViewModel)
     }
 }

@@ -14,4 +14,7 @@
     <string name="product_list_screen_error_text">No se encontraron productos para esta búsqueda :(</string>
     <string name="product_list_screen_seller_name">Por %1$s</string>
 
+    <!-- Product Detail -->
+    <string name="product_detail_screen_quantity">Cantidad actual en stock: %1$s</string>
+
 </resources>

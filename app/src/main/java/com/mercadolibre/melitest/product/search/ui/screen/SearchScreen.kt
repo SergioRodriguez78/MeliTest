@@ -62,6 +62,7 @@ fun SearchScreen(
                 query = query,
                 onQueryChange = viewModel::setQuery,
                 onSearch = viewModel::onSearch,
+                enabledSearch = query.isNotBlank(),
             )
 
             Button(
@@ -69,6 +70,7 @@ fun SearchScreen(
                     .padding(top = 16.dp)
                     .padding(horizontal = 32.dp)
                     .fillMaxWidth(),
+                enabled = query.isNotBlank(),
                 onClick = viewModel::onSearch,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MercadoLibreBlue,
